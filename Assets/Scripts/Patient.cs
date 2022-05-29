@@ -42,25 +42,23 @@ public class Patient : MonoBehaviour
         Debug.Log((int)patientVital);
     }
 
-    // private void OnCollisionEnter(Collision collision)
-    // {
-    //     if(collision.collider.tag == "Cube"){   //Tag는 유니티내부의 Inspector 바로 밑에 있음. 직접 Tag를 설정해줘야함.
-    //         Debug.Log("충돌 감지");
-    //         flag = 1;
-    //         animator.Play("DancePack@Dance03", -1,0);
-    //     }
-    // }
-    // void OnCollisionStay(Collision collision)
-    // {
-    //     if(collision.collider.tag == "Cube"){
-    //         Debug.Log("충돌 유지");
-    //     }
-    // }
-    // void OnCollisionExit(Collision collision)
-    // {
-    //     if(collision.collider.tag == "Cube"){
-    //         Debug.Log("충돌 종료");
-    //     }
-    // }
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.tag == "Cube"){   //Tag는 유니티내부의 Inspector 바로 밑에 있음. 직접 Tag를 설정해줘야함.
+            Debug.Log("환자와 충돌이 감지되었습니다.");
+        }
+    }
+    void OnCollisionStay(Collision collision)
+    {
+        if(collision.collider.tag == "Cube"){
+            Debug.Log("환자와 계속 충돌중입니다.");
+        }
+    }
+    void OnCollisionExit(Collision collision)
+    {
+        if(collision.collider.tag == "Cube"){
+            Debug.Log("환자와의 충돌이 종료되었습니다.");
+        }
+    }
 
 }
