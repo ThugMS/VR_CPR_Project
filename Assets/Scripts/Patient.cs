@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Patient : MonoBehaviour
 {
@@ -12,11 +13,14 @@ public class Patient : MonoBehaviour
     public float maxVital = 90.0f;  //환자의 최대 바이탈
     public int count = 0;
     public float weight = 1.0f; //환자의 vital에 가중치 값.
+    public Text patientVitalText; // 환자의 vital을 표시할 text
+
     //환자의 바이탈을 표시해주는 변수
     void Start()
     {
-        vitalOfPatient();
+        //vitalOfPatient();
         patient = GameObject.Find("Patient");   //Patient1 게임내의 오브젝트를 연결해주는 코드.
+        patientVitalText.text = "심박수 : " + patientVital;
     }
 
     // Update is called once per frame 1초에 60번 불린다.
@@ -24,8 +28,10 @@ public class Patient : MonoBehaviour
     {
         
         count++;
-        if (count % 240 == 0){ 
+        if (count % 240 == 0){
             vitalOfPatient();
+            patientVitalText.text = "심박수 : " + patientVital;
+            
             count = 0;
         }
         // if(flag == 0){
