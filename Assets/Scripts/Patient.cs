@@ -48,7 +48,7 @@ public class Patient : MonoBehaviour
 
     void vitalOfPatient(){
         patientVital = UnityEngine.Random.Range((int)minVital*weight, (int)maxVital*weight);
-        Debug.Log((int)patientVital);
+        // Debug.Log((int)patientVital); 
     }
 
     void OnCollisionEnter(Collision collision)
