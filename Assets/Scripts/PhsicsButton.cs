@@ -11,12 +11,17 @@ public class PhsicsButton : MonoBehaviour
     public UnityEvent onPressed, onReleased;
 
     private bool _isPressed;
+    private int pressCount;
+    private int releaseCount;
     private Vector3 _startPos;
+    private float start_y;
     private ConfigurableJoint _joint;
     // Start is called before the first frame update
     void Start()
     {
+        pressCount = 0;
         _startPos = transform.localPosition;
+        start_y = _startPos.y;
         _joint = GetComponent<ConfigurableJoint>();
     }
 
@@ -24,9 +29,15 @@ public class PhsicsButton : MonoBehaviour
     void Update()
     {
         if (!_isPressed && GetValue() + threshold >= 1)
+        {
+            // Debug.Log("startPos.y와 start_y" + _startPos.y + " " + start_y);
             Pressed();
+            pressCount += 1;
+        }
         if (_isPressed && GetValue() - threshold <= 1)
+        {
             Released();
+        }
 
     }
     private float GetValue()
@@ -41,14 +52,22 @@ public class PhsicsButton : MonoBehaviour
 
     private void Pressed()
     {
-        _isPressed = true;
-        onPressed.Invoke();
-        Debug.Log("Pressed");
+        if(_isPressed == false)
+        {
+            _isPressed = true;
+            onPressed.Invoke();
+            // Debug.Log("pressed" +_startPos.y + start_y + "_startPos.y and start_y" );
+            // Debug.Log("Pressed" + (int)(GetValue() + threshold));
+        }
     }
     private void Released()
     {
-        _isPressed = false;
-        onReleased.Invoke();
-        Debug.Log("Released");
+        if(_isPressed == true)
+        {
+            _isPressed = false;
+            onReleased.Invoke();
+            // Debug.Log("released" + _startPos.y + start_y + "_startPos.y and start_y" );
+            // Debug.Log("Released" + (int)(GetValue() + threshold));
+        }
     }
 }
