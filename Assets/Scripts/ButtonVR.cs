@@ -23,7 +23,7 @@ public class ButtonVR : MonoBehaviour
         Debug.Log("Pressed");
         if (!isPressed)
         {
-            button.transform.localPosition = new Vector3(5.825f, 0.0151f + 0.003f, -16.962f);
+            button.transform.localPosition = new Vector3(-11.459f, 2.317f + 0.003f, 17.757f);
             presser = other.gameObject;
             onPress.Invoke();
             sound.Play();
@@ -36,7 +36,7 @@ public class ButtonVR : MonoBehaviour
         Debug.Log("Released");
         if (other.gameObject == presser)
         {
-            button.transform.localPosition = new Vector3(5.825f, 0.0151f + 0.015f, -16.962f);
+            button.transform.localPosition = new Vector3(-11.459f, 2.317f + 0.015f, 17.757f);
             onRelease.Invoke();
             isPressed = false;
         }
