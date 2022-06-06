@@ -9,8 +9,8 @@ public class Patient : MonoBehaviour
     public float speed = 1.0f;
     public GameObject patient, startText, helpText;  
     public float patientVital = 0.0f;
-    public float minVital = 80.0f;   //환자의 최소 바이탈
-    public float maxVital = 90.0f;  //환자의 최대 바이탈
+    public static float minVital = 0.0f;   //환자의 최소 바이탈 static 변수로 선언해서 다른 스크립트에서도 Patient.minVital로 접근 가능.
+    public static float maxVital = 5.0f;  //환자의 최대 바이탈
     public int count = 0;
     public int shoulderCount = 0;
     public float weight = 1.0f; //환자의 vital에 가중치 값.
@@ -34,8 +34,7 @@ public class Patient : MonoBehaviour
         if (count % 240 == 0){
             vitalOfPatient();
             patientVitalText.text = "심박수 : " + patientVital;
-            
-            count = 0;
+            Debug.Log(ButtonVR.pressedCount + "환자의 압박 횟수입니다." + patientVital + "환자의 심박수.");
         }
         // if(flag == 0){
         //     patient.GetComponent<Transform>().Translate(Vector3.forward * speed * Time.deltaTime);
@@ -48,7 +47,6 @@ public class Patient : MonoBehaviour
 
     void vitalOfPatient(){
         patientVital = UnityEngine.Random.Range((int)minVital*weight, (int)maxVital*weight);
-        // Debug.Log((int)patientVital); 
     }
 
     void OnCollisionEnter(Collision collision)
